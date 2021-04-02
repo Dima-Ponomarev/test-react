@@ -1,0 +1,30 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    font-size: 2rem;
+    min-height: 10vh;
+}
+
+.header__logo{
+    font-weight: 700;
+}
+
+.header__signup{
+    text-decoration: none;
+    color: white;
+
+    background: rgb(57, 54, 255);
+    padding: 1rem 2rem;
+    border-radius: 5rem;
+
+}
+
+.header__login{
+    padding: 1rem 2rem;
+}
+
+.header__login:visited{
+    color: black;
+}
