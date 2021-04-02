@@ -16,10 +16,6 @@ class SignUp extends Component {
         }
     }
 
-    switchFormHandler = () => {
-        this.props.history.push('/login');
-    } 
-
     onSubmit = (e) => {
         e.preventDefault()
 
@@ -47,7 +43,7 @@ class SignUp extends Component {
         return (
             <div className='signup'>
                 <h2 className='signup__heading'>Sign Up</h2>
-                {!this.state.status && <p style={{color: 'red'}}>Something went wrong</p>}
+                {!this.state.status && <p style={{color: 'red'}}>Passwords are not matching</p>}
                 <form className='form' onSubmit={(e) => this.onSubmit(e)}>
                     <div className='form__control'>
                         <label className='form__label'>Name</label>
@@ -87,9 +83,6 @@ class SignUp extends Component {
                     </div>
                     <button className='signup__btn' type='submit'>Sign Up</button>
                 </form>
-                <div className='signup__switch' onClick={this.switchFormHandler}>
-                    Already have an account? Log In
-                </div>
             </div>
         )
     }

@@ -6,7 +6,13 @@ import SignUp from './SignUp'
 
 class App extends Component {
   
-  
+  constructor(props){
+    super(props);
+    this.state = {
+      status: true
+    }
+  }
+
   onLogIn = async (email, password) => {
     console.log({email, password})
     const res = await fetch(
@@ -47,7 +53,7 @@ class App extends Component {
             <SignUp  onSignUp={this.onSignUp}/>
           </Route>
           <Route path='/login'>
-            <LogIn onLogIn={this.onLogIn}/>
+            <LogIn onLogIn={this.onLogIn} login={this.state.status}/>
           </Route>
         </div>
       </Router>

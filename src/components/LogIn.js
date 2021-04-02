@@ -10,12 +10,10 @@ class LogIn extends Component {
         this.state = {
             email: '',
             password: '',
+            status: this.props.status
         }
     }
 
-    switchFormHandler = () => {
-        this.props.history.push('/signup');
-    }
 
     onSubmit = (e) => {
         e.preventDefault()
@@ -52,9 +50,6 @@ class LogIn extends Component {
                     </div>
                     <button className='login__btn' type='submit'>Log In</button>
                 </form>
-                <div className='login__switch' onClick={this.switchFormHandler}>
-                    Don't have an account? Sign up
-                </div>
             </div>
         )
     }   
