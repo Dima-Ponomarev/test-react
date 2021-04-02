@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './common.blocks/login.css'
 import './common.blocks/form.css'
+import { Redirect } from 'react-router-dom'
 
 class LogIn extends Component {
 
@@ -10,7 +11,6 @@ class LogIn extends Component {
         this.state = {
             email: '',
             password: '',
-            status: this.props.status
         }
     }
 
@@ -26,9 +26,15 @@ class LogIn extends Component {
     }
 
     render() {
+        if (this.props.loggedIn) {
+            return <Redirect to='/'/>
+        }
+
         return (
             <div className='login'>
                 <h2 className='login__heading'>Log In</h2>
+                {this.props.errors
+                && <p style={{color: 'red'}}>Unauthorized</p>}
                 <form className='form' onSubmit={(e) => this.onSubmit(e)}>
                     <div className='form__control'>
                         <label className='form__label'>Email</label>

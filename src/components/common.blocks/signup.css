@@ -19,7 +19,6 @@
 }
 
 .signup__btn{
-    margin-top: 2rem;
     padding: 1.2rem 0;
     border: none;
     border-radius: 15px;
@@ -31,15 +30,5 @@
 
     width: 100%;
     cursor: pointer;
-}
-
-.signup__switch{
-    margin-top: 1rem;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.signup__switch:hover{
-    color: #444;
 }
 

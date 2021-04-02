@@ -12,19 +12,11 @@ class SignUp extends Component {
             email: '',
             password: '',
             confirmPassword: '',
-            status: true
         }
     }
 
     onSubmit = (e) => {
         e.preventDefault()
-
-        if (this.state.password !== this.state.confirmPassword){
-            this.setState({status: false})
-            return
-        } else {
-            this.setState({status: true})
-        }
 
         this.onSignUp(
             this.state.name, 
@@ -43,7 +35,8 @@ class SignUp extends Component {
         return (
             <div className='signup'>
                 <h2 className='signup__heading'>Sign Up</h2>
-                {!this.state.status && <p style={{color: 'red'}}>Passwords are not matching</p>}
+                {this.props.errors.email && <p style={{color: 'red'}}>Email is already taken</p>}
+                {this.props.errors.password && <p style={{color: 'red'}}> Passwords are not matching </p>}
                 <form className='form' onSubmit={(e) => this.onSubmit(e)}>
                     <div className='form__control'>
                         <label className='form__label'>Name</label>

@@ -1,20 +1,54 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Header from './Header'
+import Home from './Home'
 import LogIn from './LogIn'
 import SignUp from './SignUp'
 
 class App extends Component {
-  
-  constructor(props){
-    super(props);
-    this.state = {
-      status: true
-    }
+  state = {
+    loginError : '',
+    signupError: '',
+    loggedIn: false,
   }
 
+  componentDidMount = () => {
+    this.getUser();
+  }
+
+  getUser = async () => {
+    const res = await fetch('https://internsapi.public.osora.ru/api/auth/user',
+    {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('token')  
+      },
+    })
+
+    const user = await res.json();
+
+    if(user.id){
+        this.setState({
+          user,
+          loggedIn: true
+        })
+    }
+}
+
+
+  //LOGOUT HANDLER
+  onLogOut = () =>{
+    localStorage.clear();
+    this.setState({
+      user: '',
+      loggedIn: false
+    });
+  }
+
+
+  //LOG IN HANDLER
   onLogIn = async (email, password) => {
-    console.log({email, password})
     const res = await fetch(
       'https://internsapi.public.osora.ru/api/auth/login',
       {
@@ -26,9 +60,18 @@ class App extends Component {
       })
 
       const data = await res.json();
-      console.log(data)
+      if (data.status){
+        localStorage.setItem('token', data.data.access_token)
+        this.setState({loginError: ''})
+        this.getUser()
+        
+      } else {
+        this.setState({loginError: data.errors})
+      }
   }
 
+
+  //SIGNIN HANDLER
   onSignUp = async (name, email, password, passwordConf) => {
     const res = await fetch(
       'https://internsapi.public.osora.ru/api/auth/signup',
@@ -40,21 +83,38 @@ class App extends Component {
         body: JSON.stringify({name, email, password, password_confirmation: passwordConf})
       })
 
-      const data = await res.json();
-      console.log(data)
+      const data = await res.json()
+      if (data.status){
+        this.setState({signupError: ''})
+      } else {
+        this.setState({signupError: data.errors})
+      }
   }
 
   render(){
     return (
       <Router>
         <div className="container">
-          <Header/>
-          <Route path='/signup'>
-            <SignUp  onSignUp={this.onSignUp}/>
-          </Route>
-          <Route path='/login'>
-            <LogIn onLogIn={this.onLogIn} login={this.state.status}/>
-          </Route>
+          <Header 
+            user={this.state.user}
+            onLogOut={this.onLogOut}/>
+          <Switch>
+            <Route exact path='/'>
+              <Home user={this.state.user}/>
+            </Route>
+            <Route path='/signup'>
+              <SignUp  
+                onSignUp={this.onSignUp} 
+                errors={this.state.signupError}/>
+            </Route>
+            <Route path='/login'>
+              <LogIn 
+                onLogIn={this.onLogIn} 
+                errors={this.state.loginError} 
+                loggedIn={this.state.loggedIn}
+                setUser={this.setUser}/>
+            </Route>
+          </Switch>
         </div>
       </Router>
     );

@@ -19,7 +19,6 @@
 }
 
 .login__btn{
-    margin-top: 2rem;
     padding: 1.2rem 0;
     border: none;
     border-radius: 15px;
@@ -31,14 +30,4 @@
 
     width: 100%;
     cursor: pointer;
-}
-
-.login__switch{
-    margin-top: 1rem;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.login__switch:hover{
-    color: #444;
 }
