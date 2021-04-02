@@ -7,6 +7,11 @@
     min-height: 90vh;
 }
 
+.home--loggedin{
+    justify-content: space-around;
+    min-height: 50vh;
+}
+
 .home__title{
     font-size: 3rem;
 }

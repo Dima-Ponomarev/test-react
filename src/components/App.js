@@ -10,6 +10,7 @@ class App extends Component {
     loginError : '',
     signupError: '',
     loggedIn: false,
+    startRender: false
   }
 
   componentDidMount = () => {
@@ -34,11 +35,13 @@ class App extends Component {
           loggedIn: true
         })
     }
+
+    this.setState({startRender: true})
 }
 
 
   //LOGOUT HANDLER
-  onLogOut = () =>{
+  onLogOut = () => {
     localStorage.clear();
     this.setState({
       user: '',
@@ -91,8 +94,27 @@ class App extends Component {
       }
   }
 
+  //START TEST HANDLER
+
+  onStart = async (difficulty) => {
+    const dif = parseInt(difficulty);
+    const res = await fetch(
+      'https://internsapi.public.osora.ru/api/game/play',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('token')  
+        },
+        body: JSON.stringify({type: dif ,type_hard: dif})
+      })
+    const question = await res.json();
+    console.log(question)
+  }
+
   render(){
     return (
+      this.state.startRender &&
       <Router>
         <div className="container">
           <Header 
@@ -100,7 +122,7 @@ class App extends Component {
             onLogOut={this.onLogOut}/>
           <Switch>
             <Route exact path='/'>
-              <Home user={this.state.user}/>
+              <Home user={this.state.user} onStart={this.onStart}/>
             </Route>
             <Route path='/signup'>
               <SignUp  
@@ -117,8 +139,7 @@ class App extends Component {
           </Switch>
         </div>
       </Router>
-    );
-  }
-  
+    )
+  } 
 }
 export default App;

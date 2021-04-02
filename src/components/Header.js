@@ -14,7 +14,7 @@ class Header extends Component {
         return (
             <header className='header'>
                 <h1>
-                    <Link className='header__logo' to='/'>Test your Math</Link>   
+                    <Link className='header__logo' to='/'>React test</Link>   
                 </h1>
                 {this.props.user 
                     ? <div className='header__auth-btns'>
