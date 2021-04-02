@@ -106,7 +106,7 @@ class App extends Component {
           'Content-type': 'application/json',
           Authorization: 'Bearer ' + localStorage.getItem('token')  
         },
-        body: JSON.stringify({type: dif ,type_hard: dif})
+        body: JSON.stringify({type: 1 ,type_hard: dif})
       })
     const question = await res.json();
     console.log(question)

@@ -15,10 +15,15 @@
 
     font-family: 'Poppins', sans-serif;
     font-size: 2rem;    
-    background: rgb(57, 54, 255);
+    background: #aaa;
     color: white;
 
     width: 100%;
+    
+}
+
+.game-setup__start-btn--active{
+    background: rgb(57, 54, 255);
     cursor: pointer;
 }
 
