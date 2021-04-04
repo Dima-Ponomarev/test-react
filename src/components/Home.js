@@ -24,7 +24,9 @@ export class Home extends Component {
                     <main className='home home--loggedin'>
                         <h2 className='home__title'> Logged in as {this.props.user.name}</h2>
                         <div className="game-setup">
-                            <DifficultySelect onChange={this.onChange}/>
+                            <DifficultySelect 
+                                onChange={this.onChange} 
+                                currentDifficulty={this.state.difficulty}/>
                             {this.state.difficulty 
                             ?   <button
                                 className='game-setup__start-btn game-setup__start-btn--active' 

@@ -42,8 +42,6 @@ export class Game extends Component {
         })
         const responseJSON = await res.json()
 
-        console.log(responseJSON)
-
         if(responseJSON.data.id){
             this.setState({
                 gameFinished: true,

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './common.blocks/signup.css';
 import './common.blocks/form.css'
+import './common.blocks/spinner.css'
+import { Redirect } from 'react-router-dom';
 
 class SignUp extends Component {
     
@@ -32,6 +34,17 @@ class SignUp extends Component {
     }
 
     render() {
+        if (this.props.isLoading){
+            return    (
+            <section className='signup'>
+                <div className='spinner'></div>
+            </section>   
+            )
+        }
+
+        if (this.props.errors === 'no error'){
+            return <Redirect to='/login'/>
+        }
         return (
             <section className='signup'>
                 <h2 className='signup__heading'>Sign Up</h2>

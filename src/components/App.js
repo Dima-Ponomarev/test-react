@@ -45,6 +45,7 @@ class App extends Component {
     localStorage.clear();
     this.setState({
       user: '',
+      gameStart: '',
       loggedIn: false
     });
   }
@@ -52,6 +53,7 @@ class App extends Component {
 
   //LOG IN HANDLER
   onLogIn = async (email, password) => {
+    this.setState({loading: true})
     const res = await fetch(
       'https://internsapi.public.osora.ru/api/auth/login',
       {
@@ -71,11 +73,13 @@ class App extends Component {
       } else {
         this.setState({loginError: data.errors})
       }
+      this.setState({loading: false})
   }
 
 
   //SIGNIN HANDLER
   onSignUp = async (name, email, password, passwordConf) => {
+    this.setState({loading: true})
     const res = await fetch(
       'https://internsapi.public.osora.ru/api/auth/signup',
       {
@@ -88,10 +92,12 @@ class App extends Component {
 
       const data = await res.json()
       if (data.status){
-        this.setState({signupError: ''})
+        this.setState({signupError: 'no error'})
       } else {
         this.setState({signupError: data.errors})
       }
+
+      this.setState({loading: false})
   }
 
   //START TEST HANDLER
@@ -109,7 +115,6 @@ class App extends Component {
         body: JSON.stringify({type: 1 ,type_hard: dif})
       })
     const question = await res.json();
-    console.log(question)
 
     this.setState({
       gameStart: question.data,
@@ -141,14 +146,16 @@ class App extends Component {
             <Route path='/signup'>
               <SignUp  
                 onSignUp={this.onSignUp} 
-                errors={this.state.signupError}/>
+                errors={this.state.signupError}
+                isLoading={this.state.loading}/>
             </Route>
             <Route path='/login'>
               <LogIn 
                 onLogIn={this.onLogIn} 
                 errors={this.state.loginError} 
                 loggedIn={this.state.loggedIn}
-                setUser={this.setUser}/>
+                setUser={this.setUser}
+                isLoading={this.state.loading}/>
             </Route>
           </Switch>
         </div>

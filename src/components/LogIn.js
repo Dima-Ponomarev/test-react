@@ -26,6 +26,13 @@ class LogIn extends Component {
     }
 
     render() {
+        if (this.props.isLoading){
+            return (
+                <section className='login'>
+                    <div className='spinner'></div>
+                </section>
+            )
+        }
         if (this.props.loggedIn) {
             return <Redirect to='/'/>
         }
@@ -34,7 +41,7 @@ class LogIn extends Component {
             <section className='login'>
                 <h2 className='login__heading'>Log In</h2>
                 {this.props.errors
-                && <p style={{color: 'red'}}>Unauthorized</p>}
+                && <p style={{color: 'red'}}>User not found</p>}
                 <form className='form' onSubmit={(e) => this.onSubmit(e)}>
                     <div className='form__control'>
                         <label className='form__label'>Email</label>
