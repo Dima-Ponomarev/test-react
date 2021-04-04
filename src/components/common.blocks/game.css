@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: center;
     min-height: 70vh;
-    margin-top: 5rem;
 }
 
 .game__score,
@@ -77,4 +76,24 @@
     max-width: 33%;
 
     text-align: center;
+}
+
+.game__form{
+    font-size: 2rem;
+}
+
+.game__input{
+    font-size: 2.5rem;
+    width: 10rem;
+    text-align: center;
+    padding: 1rem 1rem 1rem 2.5rem;
+}
+
+.game__input:focus{
+    box-shadow: 0 0 1px 3px rgba(166, 178, 241, 0.7);
+}
+
+.game__help{
+    font-size: 1.5rem;
+    color: #666;
 }

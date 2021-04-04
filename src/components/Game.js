@@ -18,7 +18,10 @@ export class Game extends Component {
         }, 1000);
         
         this.searchInput && this.searchInput.focus();
-        console.log(this.searchInput)
+    }
+
+    componentDidUpdate = () => {
+        this.searchInput && this.searchInput.focus();
     }
 
     componentWillUnmount = () => {
@@ -60,8 +63,6 @@ export class Game extends Component {
         
         this.onAnswer();
     }
-
-
 
     render() {
         if(this.state.gameFinished){
@@ -110,7 +111,7 @@ export class Game extends Component {
                                     required
                                     onChange={(e) => this.setState({answer: e.target.value})}/>
                             </form>
-                            <p className='game__help'>Hit enter to submit</p>
+                            <p className='game__help'>Hit ENTER to submit</p>
                         </>
                     )}               
                     <button className='game__end' onClick={this.props.onEnd}>Go Back</button>
