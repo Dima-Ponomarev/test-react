@@ -32,3 +32,7 @@
     cursor: pointer;
 }
 
+.signup__btn:hover{
+    background: rgb(101, 98, 255);
+}
+

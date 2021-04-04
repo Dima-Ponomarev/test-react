@@ -20,11 +20,14 @@ export class Game extends Component {
         this.searchInput && this.searchInput.focus();
     }
 
+    //Auto focus on input
+
     componentDidUpdate = () => {
         this.searchInput && this.searchInput.focus();
     }
 
     componentWillUnmount = () => {
+        //Memory leak if not cleared
         clearInterval(this.countDown)
     }
 
@@ -42,6 +45,7 @@ export class Game extends Component {
         })
         const responseJSON = await res.json()
 
+        //Check game status
         if(responseJSON.data.id){
             this.setState({
                 gameFinished: true,
@@ -64,6 +68,7 @@ export class Game extends Component {
 
     render() {
         if(this.state.gameFinished){
+            /*End game screen*/ 
             return (
                 <section className='game'>
                     <p className='game__score'>Score: {this.state.gameResult.points}</p>
@@ -93,6 +98,8 @@ export class Game extends Component {
                     <p className='game__score'>Score: {this.state.question.points}</p>
                     <p className='game__timer'>Timer: {this.state.timer}</p>
                     <h3 className='game__question'>{`${this.state.question.question} = ?`}</h3>
+
+                    {/*Input type based on difficulty*/}
                     {this.props.difficulty === '1' ?
                     (
                         <ul className='game__option-list'>

@@ -22,11 +22,15 @@ export class Home extends Component {
             if (this.props.user){
                 return (
                     <main className='home home--loggedin'>
-                        <h2 className='home__title'> Logged in as {this.props.user.name}</h2>
+                        <h2 className='home__title'> 
+                            Logged in as {this.props.user.name}
+                        </h2>
                         <div className="game-setup">
                             <DifficultySelect 
                                 onChange={this.onChange} 
                                 currentDifficulty={this.state.difficulty}/>
+
+                            {/*if difficulty was previously selected --> button is active*/}    
                             {this.state.difficulty 
                             ?   <button
                                 className='game-setup__start-btn game-setup__start-btn--active' 
@@ -43,7 +47,9 @@ export class Home extends Component {
             }
             return (
                 <main className='home'>
-                    <h2 className='home__title'>You are not logged in</h2>
+                    <h2 className='home__title'>
+                        You are not logged in
+                    </h2>
                 </main>
 
             )

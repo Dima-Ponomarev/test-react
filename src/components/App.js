@@ -5,7 +5,7 @@ import Home from './Home'
 import LogIn from './LogIn'
 import SignUp from './SignUp'
 
-class App extends Component {
+export class App extends Component {
   state = {
     loginError : '',
     signupError: '',
@@ -87,12 +87,14 @@ class App extends Component {
         headers: {
           'Content-type': 'application/json'
         },
-        body: JSON.stringify({name, email, password, password_confirmation: passwordConf})
+        body: JSON.stringify({
+          name, email, password, password_confirmation: passwordConf
+        })
       })
 
       const data = await res.json()
       if (data.status){
-        this.setState({signupError: 'no error'})
+        this.setState({signupError: 'none'})
       } else {
         this.setState({signupError: data.errors})
       }

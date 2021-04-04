@@ -4,7 +4,7 @@ import './common.blocks/form.css'
 import './common.blocks/spinner.css'
 import { Redirect } from 'react-router-dom';
 
-class SignUp extends Component {
+export class SignUp extends Component {
     
     constructor(props){
         super(props);
@@ -42,14 +42,19 @@ class SignUp extends Component {
             )
         }
 
-        if (this.props.errors === 'no error'){
+        /*redirect to login form if sign up response was successful*/ 
+        if (this.props.errors === 'none'){
             return <Redirect to='/login'/>
         }
         return (
             <section className='signup'>
                 <h2 className='signup__heading'>Sign Up</h2>
+
+                {/*Check for errors*/}
                 {this.props.errors.email && <p style={{color: 'red'}}>Email is already taken</p>}
                 {this.props.errors.password && <p style={{color: 'red'}}> Passwords are not matching </p>}
+
+                {/*signup form*/}
                 <form className='form' onSubmit={(e) => this.onSubmit(e)}>
                     <div className='form__control'>
                         <label className='form__label'>Name</label>

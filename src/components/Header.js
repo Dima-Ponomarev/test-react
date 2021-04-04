@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './common.blocks/header.css'
 
-class Header extends Component {
+export class Header extends Component {
 
     constructor(props){
         super(props)
