@@ -1,0 +1,16 @@
+.spinner{
+    width: 50px;
+    height: 50px;;
+    background: rgba(166, 178, 241, 0.5);
+    border-radius: 50%;
+    animation: spinner 0.5s ease infinite alternate;
+}
+
+@keyframes spinner {
+
+    to {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+
+}

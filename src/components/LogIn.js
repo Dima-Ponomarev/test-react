@@ -31,7 +31,7 @@ class LogIn extends Component {
         }
 
         return (
-            <div className='login'>
+            <section className='login'>
                 <h2 className='login__heading'>Log In</h2>
                 {this.props.errors
                 && <p style={{color: 'red'}}>Unauthorized</p>}
@@ -56,7 +56,7 @@ class LogIn extends Component {
                     </div>
                     <button className='login__btn' type='submit'>Log In</button>
                 </form>
-            </div>
+            </section>
         )
     }   
 }

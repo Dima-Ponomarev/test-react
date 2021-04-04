@@ -1,0 +1,80 @@
+.game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    margin-top: 5rem;
+}
+
+.game__score,
+.game__timer{
+    font-size: 2rem;
+}
+
+.game__question{
+    font-size: 2.5rem;
+    margin: 1vh 0;
+}
+
+.game__option-list{
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 400px;
+    max-width: 100%;
+}
+
+.game__option,
+.game__end{
+    font-size: 2rem;
+
+    border: 1px solid #888;
+    border-radius: 0.5rem;
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+}
+
+.game__end{
+    background: rgb(57, 54, 255);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+
+    margin-top: 2rem;
+}
+
+.game__option:hover,
+.game__end:hover{
+    border: 1px solid #aaa;
+    box-shadow: 0 0 1px 3px rgba(166, 178, 241, 0.7);
+}
+
+.game__result-list{
+    list-style: none;
+
+    width: 400px;
+    max-width: 100%;
+    margin-top: 3rem;
+}
+
+.game__result-item{
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid #888;
+    min-height: 4rem;
+
+    font-size: 2rem;
+}
+
+.game__result-question,
+.game__result-answer,
+.game__result-correct{
+    width: 170px;
+    max-width: 33%;
+
+    text-align: center;
+}

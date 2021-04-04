@@ -33,7 +33,7 @@ class SignUp extends Component {
 
     render() {
         return (
-            <div className='signup'>
+            <section className='signup'>
                 <h2 className='signup__heading'>Sign Up</h2>
                 {this.props.errors.email && <p style={{color: 'red'}}>Email is already taken</p>}
                 {this.props.errors.password && <p style={{color: 'red'}}> Passwords are not matching </p>}
@@ -76,7 +76,7 @@ class SignUp extends Component {
                     </div>
                     <button className='signup__btn' type='submit'>Sign Up</button>
                 </form>
-            </div>
+            </section>
         )
     }
 }

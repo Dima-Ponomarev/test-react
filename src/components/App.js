@@ -110,6 +110,16 @@ class App extends Component {
       })
     const question = await res.json();
     console.log(question)
+
+    this.setState({
+      gameStart: question.data,
+    })
+  }
+
+  //EXIT GAME HANDLER
+
+  onEnd = () => {
+    this.setState({gameStart: null})
   }
 
   render(){
@@ -122,7 +132,11 @@ class App extends Component {
             onLogOut={this.onLogOut}/>
           <Switch>
             <Route exact path='/'>
-              <Home user={this.state.user} onStart={this.onStart}/>
+              <Home 
+                user={this.state.user} 
+                onStart={this.onStart}
+                gameStart={this.state.gameStart}
+                onEnd={this.onEnd}/>
             </Route>
             <Route path='/signup'>
               <SignUp  

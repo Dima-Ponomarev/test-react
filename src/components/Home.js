@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './common.blocks/home.css'
 import './common.blocks/game-setup.css'
 import DifficultySelect from './DifficultySelect'
+import Game from './Game'
 
 export class Home extends Component {
 
@@ -13,7 +14,10 @@ export class Home extends Component {
 
     render() {
         if (this.props.gameStart){
-            <Game/>
+            return <Game 
+                question={this.props.gameStart} 
+                difficulty={this.state.difficulty}
+                onEnd={this.props.onEnd}/>
         } else {
             if (this.props.user){
                 return (
