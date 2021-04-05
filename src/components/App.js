@@ -4,6 +4,7 @@ import Header from './Header'
 import Home from './Home'
 import LogIn from './LogIn'
 import SignUp from './SignUp'
+import './common.blocks/spinner.css'
 
 export class App extends Component {
   state = {
@@ -131,7 +132,7 @@ export class App extends Component {
 
   render(){
     return (
-      this.state.startRender &&
+      this.state.startRender ?
       <Router>
         <div className="container">
           <Header 
@@ -162,6 +163,7 @@ export class App extends Component {
           </Switch>
         </div>
       </Router>
+      : <div className='spinner spinner--center'></div>
     )
   } 
 }
